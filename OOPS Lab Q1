@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    double balance;
+
+public:
+    BankAccount(double initial_balance = 0) {
+        balance = initial_balance;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "Deposit successful." << endl;
+        } else {
+            cout << "Invalid amount for deposit." << endl;
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > balance) {
+            cout << "Insufficient funds. Cannot withdraw." << endl;
+        } else {
+            balance -= amount;
+            cout << "Withdrawal successful." << endl;
+        }
+    }
+
+    double getBalance() {
+        return balance;
+    }
+};
+
+int main() {
+    BankAccount account(0);
+
+    // Test Case 1: Deposit $1000, Withdraw $500
+    account.deposit(1000);
+    account.withdraw(500);
+    cout << "Account Balance: $" << account.getBalance() << endl;
+
+    // Test Case 2: Deposit $1000, Withdraw $1500
+    account.deposit(1000);
+    account.withdraw(1500);
+    cout << "Account Balance: $" << account.getBalance() << endl;
+
+    return 0;
+}
